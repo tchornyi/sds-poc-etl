@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from uuid import UUID
 
-from .capitals import Capital
+from eu_weather_etl.capitals import Capital
 
 logger = logging.getLogger(__name__)
 

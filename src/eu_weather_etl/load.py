@@ -6,7 +6,7 @@ import logging
 
 import psycopg
 
-from .transform import WeatherRecord
+from eu_weather_etl.transform import WeatherRecord
 
 logger = logging.getLogger(__name__)
 

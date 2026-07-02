@@ -12,7 +12,7 @@ from pathlib import Path
 
 import psycopg
 
-from .db import connect
+from eu_weather_etl.db import connect
 
 logger = logging.getLogger(__name__)
 

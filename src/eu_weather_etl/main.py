@@ -9,12 +9,12 @@ import time
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from .capitals import EUROPEAN_CAPITALS
-from .db import connect
-from .extract import fetch_weather
-from .load import load_snapshot
-from .migrate import run_migrations
-from .transform import transform_all
+from eu_weather_etl.capitals import EUROPEAN_CAPITALS
+from eu_weather_etl.db import connect
+from eu_weather_etl.extract import fetch_weather
+from eu_weather_etl.load import load_snapshot
+from eu_weather_etl.migrate import run_migrations
+from eu_weather_etl.transform import transform_all
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +36,7 @@ def run(skip_migrations: bool = False) -> int:
         sleep_time = os.environ.get("SIMULATE_LONG_WORK_SEC")
         if sleep_time:
             logger.info(f"Simulating long-running work for {sleep_time}s...")
-            time.sleep(sleep_time)
+            time.sleep(float(sleep_time))
 
         inserted = load_snapshot(conn, records)
 

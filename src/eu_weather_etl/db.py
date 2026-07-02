@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import psycopg
 
-from .config import database_connection_kwargs
+from eu_weather_etl.config import database_connection_kwargs
 
 
 def connect() -> psycopg.Connection:
