@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import argparse
 import logging
 import time
@@ -32,8 +33,10 @@ def run(skip_migrations: bool = False) -> int:
         records = transform_all(pairs, snapshot_id, snapshot_at)
 
         # Emulate long-running work.
-        logger.info("Simulating long-running work for 60s...")
-        time.sleep(60)
+        sleep_time = os.environ.get("SIMULATE_LONG_WORK_SEC")
+        if sleep_time:
+            logger.info(f"Simulating long-running work for {sleep_time}s...")
+            time.sleep(sleep_time)
 
         inserted = load_snapshot(conn, records)
 
