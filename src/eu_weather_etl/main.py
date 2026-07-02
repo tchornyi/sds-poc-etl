@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import time
 from datetime import datetime, timezone
 from uuid import uuid4
 
@@ -29,6 +30,11 @@ def run(skip_migrations: bool = False) -> int:
 
         pairs = fetch_weather(list(EUROPEAN_CAPITALS))
         records = transform_all(pairs, snapshot_id, snapshot_at)
+
+        # Emulate long-running work.
+        logger.info("Simulating long-running work for 60s...")
+        time.sleep(60)
+
         inserted = load_snapshot(conn, records)
 
     logger.info("Snapshot %s complete: %d rows.", snapshot_id, inserted)
